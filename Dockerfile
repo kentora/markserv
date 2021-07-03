@@ -8,10 +8,10 @@ RUN apk add --no-cache --update --virtual .build-dependencies git make gcc g++ p
     && npm install \
     && apk del .build-dependencies
 
-COPY lib/* .
+COPY . .
 
-VOLUME ["/data"]
+VOLUME ["/app/data"]
 
 EXPOSE 3080
 
-CMD ["node", "cli.js", "-b", "false", "-a", "0.0.0.0", "-p", "3080", "/data"
+CMD ["node", "lib/cli.js", "-b", "false", "-a", "0.0.0.0", "-p", "3080", "/data"]
