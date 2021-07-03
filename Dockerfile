@@ -10,4 +10,4 @@ WORKDIR "/data"
 
 EXPOSE 3080
 
-CMD ["markserv", "-x", "-a", "0.0.0.0", "-p", "3080"
+CMD ["markserv", "-b", "false", "-a", "0.0.0.0", "-p", "3080"
