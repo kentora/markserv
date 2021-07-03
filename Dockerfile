@@ -1,13 +1,17 @@
 FROM node:14-alpine
 
+WORKDIR "/app"
+
+COPY package*.json ./
+
 RUN apk add --no-cache --update --virtual .build-dependencies git make gcc g++ python \
-    && npm --ws:verbose install markserv -g \
+    && npm install \
     && apk del .build-dependencies
-    
+
+COPY lib/* .
 
 VOLUME ["/data"]
-WORKDIR "/data"
 
 EXPOSE 3080
 
-CMD ["markserv", "-b", "false", "-a", "0.0.0.0", "-p", "3080"
+CMD ["node", "cli.js", "-b", "false", "-a", "0.0.0.0", "-p", "3080", "/data"
